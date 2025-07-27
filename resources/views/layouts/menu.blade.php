@@ -1,4 +1,5 @@
-<div class="bg-gray-800 h-20 w-full">
+<div class="h-20 w-full absolute z-10 bg-black/15
+">
     <div class="flex justify-between items-center h-full mx-[72px]">
         <div>
             <a href="#"><img src="{{ asset('/img/logo.png') }}" alt=""></a>

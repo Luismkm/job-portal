@@ -11,6 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -28,15 +29,15 @@
             </header>
         @endisset
 
-        @include('layouts.menu')
+        <div class="relative">
+            @include('layouts.menu')
 
-        <main class="main-content position-relative border-radius-lg">
-            <div class="container-fluid py-4">
-                @yield('content')
-            </div>
-        </main>
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+        </div>
 
-        @include('layouts.footer')
+
 
 
     </div>
