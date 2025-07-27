@@ -56,8 +56,12 @@
                 </div>
             </div>
         </div>
-        <div>
-            <h1>Logos</h1>
+        <div class="w-full h-32 bg-black flex justify-between items-center px-[72px]">
+            <img class="h-12" src="{{ asset('/img/spotify.svg') }}" alt="Icon of Spotify">
+            <img class="h-12" src="{{ asset('/img/slack.svg') }}" alt="Icon of Slack">
+            <img class="h-12" src="{{ asset('/img/adobe.svg') }}" alt="Icon of Adobe">
+            <img class="h-12" src="{{ asset('/img/asana.svg') }}" alt="Icon of Asana">
+            <img class="h-12" src="{{ asset('/img/linear.svg') }}" alt="Icon of Linear">
         </div>
     </div>
 @endsection
