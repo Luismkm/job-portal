@@ -67,7 +67,7 @@
             <div class="px-16 py-[72px]">
                 <p class="block font-bold text-5xl mb-10">Recent Jobs Available</p>
                 <div class="flex justify-between">
-                    <p class="inline-block">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet...</p>
+                    <p class="inline-block text-lg">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet...</p>
                     <a href="#" class="text-primary font-semibold text-2xl underline">View all</a>
                 </div>
                 <div class="px-10">
@@ -81,7 +81,9 @@
                             <div class="flex items-center">
                                 <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
                                 <div class="flex flex-col">
-                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <a href="#">
+                                        <p class="font-semibold text-[28px]">Forward Security Director</p>
+                                    </a>
                                     <p>Bauch, Schuppe and Schulist Co</p>
                                 </div>
                             </div>
@@ -120,7 +122,9 @@
                             <div class="flex items-center">
                                 <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
                                 <div class="flex flex-col">
-                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <a href="#">
+                                        <p class="font-semibold text-[28px]">Forward Security Director</p>
+                                    </a>
                                     <p>Bauch, Schuppe and Schulist Co</p>
                                 </div>
                             </div>
@@ -159,7 +163,9 @@
                             <div class="flex items-center">
                                 <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
                                 <div class="flex flex-col">
-                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <a href="#">
+                                        <p class="font-semibold text-[28px]">Forward Security Director</p>
+                                    </a>
                                     <p>Bauch, Schuppe and Schulist Co</p>
                                 </div>
                             </div>
@@ -198,7 +204,9 @@
                             <div class="flex items-center">
                                 <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
                                 <div class="flex flex-col">
-                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <a href="#">
+                                        <p class="font-semibold text-[28px]">Forward Security Director</p>
+                                    </a>
                                     <p>Bauch, Schuppe and Schulist Co</p>
                                 </div>
                             </div>
@@ -237,7 +245,9 @@
                             <div class="flex items-center">
                                 <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
                                 <div class="flex flex-col">
-                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <a href="#">
+                                        <p class="font-semibold text-[28px]">Forward Security Director</p>
+                                    </a>
                                     <p>Bauch, Schuppe and Schulist Co</p>
                                 </div>
                             </div>
@@ -266,6 +276,55 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Browse by Category --}}
+            <div class="flex flex-col items-center bg-primary/10">
+                <h3 class="font-bold text-5xl mt-14 mb-10">Browse by Category</h3>
+                <p class="text-black mb-14 text-lg">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id scele</p>
+                <div class="grid grid-cols-4 gap-6 px-[72px]">
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/agriculture.svg') }}" alt="Icon of Agriculture">
+                        <p>Agriculture</p>
+                        <p>1254 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/metal.svg') }}" alt="Icon of Metal">
+                        <p>Metal Production</p>
+                        <p>816 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/commerce.svg') }}" alt="Icon of Commerce">
+                        <p>Commerce</p>
+                        <p>2082 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/construction.svg') }}" alt="Icon of Construction">
+                        <p>Construction</p>
+                        <p>1520 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/tourism.svg') }}" alt="Icon of Hotels & Tourism">
+                        <p>Hotels & Tourism</p>
+                        <p>1022 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/education.svg') }}" alt="Icon of Education">
+                        <p>Education</p>
+                        <p>1496 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/financial.svg') }}" alt="Icon of Financial Services">
+                        <p>Financial Services</p>
+                        <p>1529 jobs</p>
+                    </div>
+                    <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
+                        <img class="w-10 h-10" src="{{ asset('/img/transport.svg') }}" alt="Icon of Transport">
+                        <p>Transport</p>
+                        <p>1244 jobs</p>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
 @endsection
