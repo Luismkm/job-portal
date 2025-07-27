@@ -32,27 +32,27 @@
                     </button>
                 </form>
                 <div class="flex w-[600px] justify-between mt-20">
-                    <span class="flex w-40 h-[60px] gap-3 items-center">
+                    <div class="flex w-40 h-[60px] gap-3 items-center">
                         <img src="{{ asset('/img/jobs.svg') }}" alt="Icon of briefcase">
                         <div class="">
-                            <span class="block text-white font-bold text-xl">25,850</span>
-                            <span class="text-white">Jobs</span>
+                            <p class="block text-white font-bold text-xl">25,850</p>
+                            <p class="text-white">Jobs</p>
                         </div>
-                    </span>
-                    <span class="flex w-40 h-[60px] gap-3 items-center">
+                    </div>
+                    <div class="flex w-40 h-[60px] gap-3 items-center">
                         <img src="{{ asset('/img/candidates.svg') }}" alt="Icon of candidates">
                         <div>
-                            <span class="block text-white font-bold text-xl">10,250</span>
-                            <span class="text-white">Candidates</span>
+                            <p class="block text-white font-bold text-xl">10,250</p>
+                            <p class="text-white">Candidates</p>
                         </div>
-                    </span>
-                    <span class="flex w-40 h-[60px] gap-3 items-center">
+                    </div>
+                    <div class="flex w-40 h-[60px] gap-3 items-center">
                         <img src="{{ asset('/img/companies.svg') }}" alt="Icon of companies">
                         <div>
-                            <span class="block text-white font-bold text-xl">18,400</span>
-                            <span class="text-white">Companies</span>
+                            <p class="block text-white font-bold text-xl">18,400</p>
+                            <p class="text-white">Companies</p>
                         </div>
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,5 +63,209 @@
             <img class="h-12" src="{{ asset('/img/asana.svg') }}" alt="Icon of Asana">
             <img class="h-12" src="{{ asset('/img/linear.svg') }}" alt="Icon of Linear">
         </div>
+        <main>
+            <div class="px-16 py-[72px]">
+                <p class="block font-bold text-5xl mb-10">Recent Jobs Available</p>
+                <div class="flex justify-between">
+                    <p class="inline-block">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet...</p>
+                    <a href="#" class="text-primary font-semibold text-2xl underline">View all</a>
+                </div>
+                <div class="px-10">
+                    <div>
+                        <div class="flex justify-between mt-24">
+                            <p class="inline-block text-primary bg-primary/10 rounded-lg p-2">10 min ago</p>
+                            <a href="#"><img class="h-6" src="{{ asset('/img/bookmark.svg') }}"
+                                    alt="Icon of Linear"></a>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="flex items-center">
+                                <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
+                                <div class="flex flex-col">
+                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <p>Bauch, Schuppe and Schulist Co</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-12">
+                                <div class="flex gap-6 text-gray-600 font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/briefcase.svg') }}" alt="Icon of briefcase">
+                                        <p>Hotels & Tourism</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/clock.svg') }}" alt="Icon of clock">
+                                        <p>Full time</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/wallet.svg') }}" alt="Icon of wallet">
+                                        <p>$40000-$42000</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/map-pin.svg') }}" alt="Icon of map pin">
+                                        <p>New-York, USA</p>
+                                    </div>
+                                </div>
+                                <button class="w-32 h-10 bg-primary rounded-lg text-white font-bold">Job Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-10">
+                    <div>
+                        <div class="flex justify-between mt-24">
+                            <p class="inline-block text-primary bg-primary/10 rounded-lg p-2">10 min ago</p>
+                            <a href="#"><img class="h-6" src="{{ asset('/img/bookmark.svg') }}"
+                                    alt="Icon of Linear"></a>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="flex items-center">
+                                <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
+                                <div class="flex flex-col">
+                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <p>Bauch, Schuppe and Schulist Co</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-12">
+                                <div class="flex gap-6 text-gray-600 font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/briefcase.svg') }}" alt="Icon of briefcase">
+                                        <p>Hotels & Tourism</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/clock.svg') }}" alt="Icon of clock">
+                                        <p>Full time</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/wallet.svg') }}" alt="Icon of wallet">
+                                        <p>$40000-$42000</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/map-pin.svg') }}" alt="Icon of map pin">
+                                        <p>New-York, USA</p>
+                                    </div>
+                                </div>
+                                <button class="w-32 h-10 bg-primary rounded-lg text-white font-bold">Job Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-10">
+                    <div>
+                        <div class="flex justify-between mt-24">
+                            <p class="inline-block text-primary bg-primary/10 rounded-lg p-2">10 min ago</p>
+                            <a href="#"><img class="h-6" src="{{ asset('/img/bookmark.svg') }}"
+                                    alt="Icon of Linear"></a>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="flex items-center">
+                                <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
+                                <div class="flex flex-col">
+                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <p>Bauch, Schuppe and Schulist Co</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-12">
+                                <div class="flex gap-6 text-gray-600 font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/briefcase.svg') }}" alt="Icon of briefcase">
+                                        <p>Hotels & Tourism</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/clock.svg') }}" alt="Icon of clock">
+                                        <p>Full time</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/wallet.svg') }}" alt="Icon of wallet">
+                                        <p>$40000-$42000</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/map-pin.svg') }}" alt="Icon of map pin">
+                                        <p>New-York, USA</p>
+                                    </div>
+                                </div>
+                                <button class="w-32 h-10 bg-primary rounded-lg text-white font-bold">Job Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-10">
+                    <div>
+                        <div class="flex justify-between mt-24">
+                            <p class="inline-block text-primary bg-primary/10 rounded-lg p-2">10 min ago</p>
+                            <a href="#"><img class="h-6" src="{{ asset('/img/bookmark.svg') }}"
+                                    alt="Icon of Linear"></a>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="flex items-center">
+                                <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
+                                <div class="flex flex-col">
+                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <p>Bauch, Schuppe and Schulist Co</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-12">
+                                <div class="flex gap-6 text-gray-600 font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/briefcase.svg') }}" alt="Icon of briefcase">
+                                        <p>Hotels & Tourism</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/clock.svg') }}" alt="Icon of clock">
+                                        <p>Full time</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/wallet.svg') }}" alt="Icon of wallet">
+                                        <p>$40000-$42000</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/map-pin.svg') }}" alt="Icon of map pin">
+                                        <p>New-York, USA</p>
+                                    </div>
+                                </div>
+                                <button class="w-32 h-10 bg-primary rounded-lg text-white font-bold">Job Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-10">
+                    <div>
+                        <div class="flex justify-between mt-24">
+                            <p class="inline-block text-primary bg-primary/10 rounded-lg p-2">10 min ago</p>
+                            <a href="#"><img class="h-6" src="{{ asset('/img/bookmark.svg') }}"
+                                    alt="Icon of Linear"></a>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="flex items-center">
+                                <img class="h-12 mr-5" src="{{ asset('/img/logo1.jpg') }}" alt="Icon company">
+                                <div class="flex flex-col">
+                                    <a href="#"><p class="font-semibold text-[28px]">Forward Security Director</p></a>
+                                    <p>Bauch, Schuppe and Schulist Co</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-12">
+                                <div class="flex gap-6 text-gray-600 font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/briefcase.svg') }}" alt="Icon of briefcase">
+                                        <p>Hotels & Tourism</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/clock.svg') }}" alt="Icon of clock">
+                                        <p>Full time</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/wallet.svg') }}" alt="Icon of wallet">
+                                        <p>$40000-$42000</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <img src="{{ asset('/img/map-pin.svg') }}" alt="Icon of map pin">
+                                        <p>New-York, USA</p>
+                                    </div>
+                                </div>
+                                <button class="w-32 h-10 bg-primary rounded-lg text-white font-bold">Job Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 @endsection
