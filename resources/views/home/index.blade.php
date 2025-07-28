@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <div class="bg-cover h-screen" style="background-image: url('{{ asset('img/hero.png') }}');">
+        <div class="bg-cover w-full h-full" style="background-image: url('{{ asset('img/hero.png') }}');">
             <div class="flex flex-col justify-center items-center h-screen px-10 py-9">
                 <h1 class="font-bold text-7xl text-white">Find Your Dream Job Today!</h1>
                 <h2 class="font-medium text-lg text-white mt-5">Connecting Talent with Opportunity: Your Gateway to Career
@@ -56,15 +56,17 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-32 bg-black flex justify-between items-center px-[72px]">
+        <div class="w-full bg-black">
+            <div class="max-w-[1440px] mx-auto h-32 flex justify-between items-center px-[72px]">
             <img class="h-12" src="{{ asset('/img/spotify.svg') }}" alt="Icon of Spotify">
             <img class="h-12" src="{{ asset('/img/slack.svg') }}" alt="Icon of Slack">
             <img class="h-12" src="{{ asset('/img/adobe.svg') }}" alt="Icon of Adobe">
             <img class="h-12" src="{{ asset('/img/asana.svg') }}" alt="Icon of Asana">
             <img class="h-12" src="{{ asset('/img/linear.svg') }}" alt="Icon of Linear">
         </div>
-        <main>
-            <div class="px-16 py-[72px]">
+        </div>
+        <main class="w-full">
+            <div class="max-w-[1440px] mx-auto px-16 py-[72px]">
                 <p class="block font-bold text-5xl mb-10">Recent Jobs Available</p>
                 <div class="flex justify-between">
                     <p class="inline-block text-lg">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet...</p>
@@ -327,7 +329,7 @@
             </div>
 
             {{-- Browse by Category --}}
-            <div>
+            <div class="max-w-[1440px] mx-auto">
                 <div class="flex justify-center items-center mt-[120px] mb-20">
                     <img class="w-[550px] h-[514px]" src="{{ asset('/img/decoration.jpg') }}"
                         alt="aleatory illustration">
@@ -346,7 +348,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" w-[1440px] grid mx-auto grid-cols-3 place-items-center">
+                <div class="grid mx-auto grid-cols-3 place-items-center">
                     <div class="w-[306px] flex flex-col gap-6">
                         <span class="font-bold text-4xl text-primary">12k+</span>
                         <p class="font-semibold text-2xl">Clients worldwide</p>
@@ -384,7 +386,7 @@
             {{-- News and Blog --}}
 
 
-            <div class="px-[72px] py-[60px] w-[1440px] mx-auto">
+            <div class="max-w-[1440px] px-[72px] py-[60px] mx-auto">
                 <p class="block font-semibold text-5xl mb-10">News and Blog</p>
                 <div class="flex justify-between">
                     <p class="inline-block text-lg">Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed
@@ -392,7 +394,7 @@
                     <a href="#" class="text-primary font-semibold text-2xl underline">View all</a>
                 </div>
                 <div class="grid grid-cols-2 gap-6 mt-14">
-                    <div class="relative w-[636px]">
+                    <div class="relative">
                         <div class="relative">
                             <img class="w-full h-[400px] absolute top-0 left-0 z-0"
                                 src="{{ asset('/img/decoration.jpg') }}">
@@ -417,7 +419,7 @@
                         </div>
                     </div>
 
-                    <div class="relative w-[636px]">
+                    <div class="relative">
                         <div class="relative">
                             <img class="w-full h-[400px] absolute top-0 left-0 z-0"
                                 src="{{ asset('/img/decoration.jpg') }}">
