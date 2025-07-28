@@ -278,10 +278,11 @@
             </div>
 
             {{-- Browse by Category --}}
-            <div class="flex flex-col items-center bg-primary/10">
+            <div class="flex flex-col items-center bg-primary/10 pb-[120px]">
                 <h3 class="font-bold text-5xl mt-14 mb-10">Browse by Category</h3>
-                <p class="text-black mb-14 text-lg">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id scele</p>
-                <div class="grid grid-cols-4 gap-6 px-[72px]">
+                <p class="text-black mb-14 text-lg">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit
+                    a massa elementum id scele</p>
+                <div class="grid grid-cols-4 gap-6">
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/agriculture.svg') }}" alt="Icon of Agriculture">
                         <p>Agriculture</p>
@@ -324,6 +325,61 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Browse by Category --}}
+            <div>
+                <div class="flex justify-center items-center mt-[120px] mb-20">
+                    <img class="w-[550px] h-[514px]" src="{{ asset('/img/decoration.jpg') }}"
+                        alt="aleatory illustration">
+                    <div class="ml-32">
+                        <h3 class="font-bold text-5xl mb-10 leading-tight">Good Life Begins With<br> A Good Company</h3>
+                        <p class="w-[600px] text-lg mb-14">Ultricies purus dolor viverra mi laoreet at cursus justo.
+                            Ultrices
+                            purus diam egestas amet
+                            faucibus tempor blandit. Elit velit mauris aliquam est diam. Leo sagittis consectetur diam morbi
+                            erat aenean. Vulputate praesent congue faucibus in euismod feugiat euismod volutpat</p>
+                        <div class="flex items-center font-semibold text-primary gap-6">
+                            <button
+                                class="w-32 h-10 bg-primary text-white font-semibold rounded-lg hover:font-semibold hover:transition-colors">Search
+                                Job</button>
+                            <a class="underline" href="#">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class=" w-[1440px] grid mx-auto grid-cols-3 place-items-center">
+                    <div class="w-[306px] flex flex-col gap-6">
+                        <span class="font-bold text-4xl text-primary">12k+</span>
+                        <p class="font-semibold text-2xl">Clients worldwide</p>
+                        <p>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum</p>
+                    </div>
+                    <div class="w-[306px] flex flex-col gap-6">
+                        <span class="font-bold text-4xl text-primary">20k+</span>
+                        <p class="font-semibold text-2xl">Active resume</p>
+                        <p>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum</p>
+                    </div>
+                    <div class="w-[306px] flex flex-col gap-6">
+                        <span class="font-bold text-4xl text-primary">18k+</span>
+                        <p class="font-semibold text-2xl">Compnies</p>
+                        <p>At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Browse by Category --}}
+
+            <div class="flex justify-center items-center w-[1296px] h-[420px] mx-auto bg-black rounded-2xl my-[120px]">
+                <div class="text-white flex-1 pl-16">
+                    <h3 class="font-bold text-5xl mb-10 leading-tight">Create A Better<br> Future For Yourself</h3>
+                    <p class="text-lg mb-14">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet.
+                        Blandit a massa elementum id scelerisque rhoncus</p>
+                    <button
+                        class="w-32 h-10 bg-primary text-white font-semibold rounded-lg hover:font-semibold hover:transition-colors">Search
+                        Job</button>
+                </div>
+                <img class="w-[760px] h-[420px] object-cover" src="{{ asset('/img/group.png') }}" alt="Icon of Financial Services">
+
+            </div>
+
 
         </main>
     </div>
