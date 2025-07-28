@@ -376,10 +376,72 @@
                         class="w-32 h-10 bg-primary text-white font-semibold rounded-lg hover:font-semibold hover:transition-colors">Search
                         Job</button>
                 </div>
-                <img class="w-[760px] h-[420px] object-cover" src="{{ asset('/img/group.png') }}" alt="Icon of Financial Services">
+                <img class="w-[760px] h-[420px] object-cover" src="{{ asset('/img/group.png') }}"
+                    alt="Icon of Financial Services">
 
             </div>
 
+            {{-- News and Blog --}}
+
+
+            <div class="px-[72px] py-[60px] w-[1440px] mx-auto">
+                <p class="block font-semibold text-5xl mb-10">News and Blog</p>
+                <div class="flex justify-between">
+                    <p class="inline-block text-lg">Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed
+                        tristique in dolor</p>
+                    <a href="#" class="text-primary font-semibold text-2xl underline">View all</a>
+                </div>
+                <div class="grid grid-cols-2 gap-6 mt-14">
+                    <div class="relative w-[636px]">
+                        <div class="relative">
+                            <img class="w-full h-[400px] absolute top-0 left-0 z-0"
+                                src="{{ asset('/img/decoration.jpg') }}">
+                            <button
+                                class="bg-primary px-5 py-2 relative top-[18px] left-[29px] text-white font-semibold rounded-lg hover:font-semibold hover:transition-colors z-10">
+                                News
+                            </button>
+                        </div>
+
+                        <div class="relative z-10 mt-[390px] px-4">
+                            <div>
+                                <p class="text-gray-500 font-semibold pb-8">30 March 2024</p>
+                                <p class="font-semibold text-2xl pb-8">
+                                    Revitalizing Workplace Morale: Innovative Tactics for Boosting Employee Engagement in
+                                    2024
+                                </p>
+                            </div>
+                            <div class="mt-2 flex items-center text-primary font-medium cursor-pointer">
+                                <p>Read more</p>
+                                <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative w-[636px]">
+                        <div class="relative">
+                            <img class="w-full h-[400px] absolute top-0 left-0 z-0"
+                                src="{{ asset('/img/decoration.jpg') }}">
+                            <button
+                                class="bg-primary px-5 py-2 relative top-[18px] left-[29px] text-white font-semibold rounded-lg hover:font-semibold hover:transition-colors z-10">
+                                Blog
+                            </button>
+                        </div>
+
+                        <div class="relative z-10 mt-[390px] px-4">
+                            <div>
+                                <p class="text-gray-500 font-semibold pb-8">30 March 2024</p>
+                                <p class="font-semibold text-2xl pb-8">
+                                    How to avoid the top six most common job interview mistakes
+                                </p>
+                            </div>
+                            <div class="mt-2 flex items-center text-primary font-medium cursor-pointer">
+                                <p>Read more</p>
+                                <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </div>
