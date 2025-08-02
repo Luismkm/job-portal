@@ -11,7 +11,7 @@ class City extends Model
         'state_id'
     ];
 
-    public function state()
+    public function states()
     {
         return $this->belongsTo(State::class, 'state_id');
     }
@@ -24,5 +24,10 @@ class City extends Model
     public function Jobs()
     {
         return $this->hasMany(Job::class, 'city_id');
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'city_id');
     }
 }

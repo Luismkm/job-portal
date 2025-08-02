@@ -27,12 +27,12 @@ class Job extends Model
         return $this->belongsTo(City::class, 'city_id');
     }
 
-    public function company()
+    public function companies()
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
 
-    public function employee()
+    public function employees()
     {
         return $this->belongsToMany(Employee::class, 'employee_job', 'job_id', 'employee_id')
                 ->withPivot('status')

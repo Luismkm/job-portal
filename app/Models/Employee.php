@@ -10,8 +10,14 @@ class Employee extends Model
         'name',
         'email',
         'password',
+        'city_id',
         'avatar'
     ];
+
+    public function Cities()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 
     public function jobs()
     {
