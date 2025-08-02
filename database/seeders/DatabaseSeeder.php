@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\City;
+use App\Models\Company;
+use App\Models\Employee;
+use App\Models\HumanResourcesUser;
+use App\Models\Job;
+use App\Models\State;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +20,55 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        State::factory()->createMany([
+            [
+                'name' => 'Paraná',
+                'state_code' => 'PR'
+            ],
+            [
+                'name' => 'Santa Catarina',
+                'state_code' => 'SC'
+            ],
+            [
+                'name' => 'Rio Grande do Sul',
+                'state_code' => 'RS'
+            ]
         ]);
+
+        $paranaId = State::where('state_code', 'PR')->value('id');
+        $scId = State::where('state_code', 'SC')->value('id');
+        $rsId = State::where('state_code', 'RS')->value('id');
+
+
+        City::factory()->createMany([
+            [
+                'name' => 'Curitiba',
+                'state_id' => $paranaId
+            ],
+            [
+                'name' => 'Florianópolis',
+                'state_id' => $scId
+            ],
+            [
+                'name' => 'Porto Alegre',
+                'state_id' => $rsId
+            ]
+        ]);
+
+        Company::factory(5)->create();
+
+        HumanResourcesUser::factory(3)->create();
+
+        Job::factory(5)->create();
+
+        Employee::factory(5)
+            ->afterCreating(function ($employee) {
+                $jobs = Job::inRandomOrder()->take(rand(1, 3))->pluck('id');
+
+                foreach ($jobs as $jobId) {
+                    $employee->jobs()->attach($jobId, ['status' => 'saved']);
+                }
+            })
+            ->create();
     }
 }

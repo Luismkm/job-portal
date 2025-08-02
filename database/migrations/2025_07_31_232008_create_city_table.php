@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('city', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('state_id')->references('id')->on('state');
+            $table->foreignId('state_id')->references('id')->on('states');
             $table->timestamps();
         });
     }

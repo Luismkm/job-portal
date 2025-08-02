@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Employee extends Model
+class HumanResourcesUser extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,8 @@ class Employee extends Model
         'name',
         'email',
         'password',
-        'city_id',
-        'avatar'
+        'avatar',
+        'company_id'
     ];
 
     protected static function boot()
@@ -32,15 +32,8 @@ class Employee extends Model
         });
     }
 
-    public function Cities()
+    public function companies()
     {
-        return $this->belongsTo(City::class, 'city_id');
-    }
-
-    public function jobs()
-    {
-        return $this->belongsToMany(Job::class, 'employee_job', 'employee_id', 'job_id')
-                ->withPivot('status')
-                ->withTimestamps();
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

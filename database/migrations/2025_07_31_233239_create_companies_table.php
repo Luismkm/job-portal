@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('avatar');
-            $table->foreignId('city_id')->references('id')->on('city');
+            $table->foreignId('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }
