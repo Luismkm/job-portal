@@ -12,12 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->foreignId('city_id')->references('id')->on('cities');
-            $table->string('avatar');
             $table->timestamps();
         });
     }

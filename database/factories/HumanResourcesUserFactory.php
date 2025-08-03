@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -19,10 +18,7 @@ class HumanResourcesUserFactory  extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
-            'avatar' => fake()->url(),
+            'user_id' => \App\Models\User::where('role', 'human_resource')->inRandomOrder()->first()->id,
             'company_id' => \App\Models\Company::inRandomOrder()->first()->id,
         ];
     }

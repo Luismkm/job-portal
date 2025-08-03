@@ -14,11 +14,8 @@ class Company extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'name',
         'ein',
-        'email',
-        'password',
-        'avatar',
+        'user_id',
         'city_id'
     ];
 
@@ -31,6 +28,11 @@ class Company extends Model
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }
         });
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function cities()

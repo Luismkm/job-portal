@@ -31,12 +31,17 @@
         @endisset
 
         <div class="relative">
+            @include('layouts.menu')
 
-            <div class="container-fluid">
-                @yield('content')
-            </div>
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
 
+            @include('layouts.footer')
         </div>
+
+
+
 
     </div>
 </body>

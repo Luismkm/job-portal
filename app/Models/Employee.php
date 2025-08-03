@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Employee extends Model
 {
@@ -14,22 +13,14 @@ class Employee extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'city_id',
-        'avatar'
+        'user_id',
+        'city_id'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($model) {
-            if (empty($model->{$model->getKeyName()})) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function Cities()
@@ -39,7 +30,7 @@ class Employee extends Model
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class, 'employee_job', 'employee_id', 'job_id')
+        return $this->belongsToMany(Job::class, 'employee_job', 'user_id', 'job_id')
                 ->withPivot('status')
                 ->withTimestamps();
     }

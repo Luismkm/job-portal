@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
             $table->string('ein');
-            $table->string('email');
-            $table->string('password');
-            $table->string('avatar');
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->foreignId('city_id')->references('id')->on('cities');
             $table->timestamps();
         });

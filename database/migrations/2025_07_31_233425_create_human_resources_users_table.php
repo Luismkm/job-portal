@@ -12,11 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('human_resources_users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('avatar');
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->foreignUuid('company_id')->references('id')->on('companies');
             $table->timestamps();
         });

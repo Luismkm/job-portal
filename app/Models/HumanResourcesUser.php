@@ -4,32 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class HumanResourcesUser extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'avatar',
+        'user_id',
         'company_id'
     ];
 
-    protected static function boot()
+    public function users()
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->{$model->getKeyName()})) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function companies()

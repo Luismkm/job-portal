@@ -20,12 +20,9 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
             'ein' => fake()->numerify('##-#######'),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
-            'avatar' => fake()->url(),
-            'city_id' => fake()->numberBetween(1, 3)
+            'city_id' => fake()->numberBetween(1, 3),
+            'user_id' => \App\Models\User::where('role', 'company')->inRandomOrder()->first()->id,
         ];
     }
 }

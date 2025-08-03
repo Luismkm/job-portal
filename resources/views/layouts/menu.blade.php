@@ -10,8 +10,8 @@
             <a href="#"><li class="font-medium hover:font-semibold">Contact Us</li></a>
         </ul>
         <div class="flex text-white gap-4">
-            <button class="hover:font-semibold">Login</button>
-            <button class="w-24 h-10 bg-primary rounded-lg hover:font-semibold hover:transition-colors">Register</button>
+            <a href="{{ route('login') }}" class="w-16 h-10 rounded-lg flex justify-center items-center hover:font-semibold hover:transition-colors">Login</a>
+            <a class="w-24 h-10 bg-primary rounded-lg flex justify-center items-center hover:font-semibold hover:transition-colors">Register</a>
         </div>
     </div>
 </div>

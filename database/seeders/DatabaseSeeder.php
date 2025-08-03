@@ -8,8 +8,10 @@ use App\Models\Employee;
 use App\Models\HumanResourcesUser;
 use App\Models\Job;
 use App\Models\State;
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
 
         State::factory()->createMany([
             [
@@ -61,12 +63,18 @@ class DatabaseSeeder extends Seeder
 
         Job::factory(5)->create();
 
-        Employee::factory(5)
+        Employee::factory(10)
             ->afterCreating(function ($employee) {
                 $jobs = Job::inRandomOrder()->take(rand(1, 3))->pluck('id');
 
                 foreach ($jobs as $jobId) {
-                    $employee->jobs()->attach($jobId, ['status' => 'saved']);
+                    DB::table('employee_job')->insert([
+                        'user_id' => $employee->user_id,
+                        'job_id' => $jobId,
+                        'status' => 'saved',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
                 }
             })
             ->create();
