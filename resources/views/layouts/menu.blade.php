@@ -11,7 +11,7 @@
         </ul>
         <div class="flex text-white gap-4">
             <a href="{{ route('login') }}" class="w-16 h-10 rounded-lg flex justify-center items-center hover:font-semibold hover:transition-colors">Login</a>
-            <a class="w-24 h-10 bg-primary rounded-lg flex justify-center items-center hover:font-semibold hover:transition-colors">Register</a>
+            <a href="{{ route('register') }}" class="w-24 h-10 bg-primary rounded-lg flex justify-center items-center hover:font-semibold hover:transition-colors">Register</a>
         </div>
     </div>
 </div>
