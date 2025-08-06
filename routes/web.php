@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        if(auth()->user()->role === 'company'){
+            return redirect()->route('company.dashboard');
+        }
     })->name('dashboard');
+
+    Route::get('/company/home', [CompanyController::class, 'home'])->name('company.dashboard');
 });
 
 require __DIR__ . '/auth.php';

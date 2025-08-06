@@ -30,8 +30,8 @@
             </header>
         @endisset
 
-        <div class="relative">
-
+        <div class="flex relative">
+            @yield('sidebar')
             <div class="container-fluid">
                 @yield('content')
             </div>
