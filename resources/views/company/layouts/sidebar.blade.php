@@ -1,21 +1,33 @@
-<div class="w-64 h-screen flex bg-white shadow-md">
-    <div class="flex flex-col w-full justify-between p-3">
-        <div class="w-full">
-            <div class="flex gap-2">
-                <p>Bem vindo, </p><span> {{ auth()->user()->name }}</span>
+<div class="flex flex-col justify-between fixed items-center h-screen shadow-md shadow-black bg-gray-300">
+    <div>
+        <x-menu class="border border-base-content/10  !w-64">
+            <div class="flex gap-2 p-3 mb-4">
+                <p>Bem vindo, </p>
+                <p class="font-bold">{{ auth()->user()->name }}</p>
             </div>
-            <hr class="w-full">
-            <ul>
-                <li class="bg-gray-50 px-2 py-1"><a href="#"><i class="fas fa-users me-3"></i>Colaborators</a></li>
-                <li><a href="#"><i class="fas fa-users me-3"></i>Colaborators</a></li>
-                <li><a href="#"><i class="fas fa-users me-3"></i>Colaborators</a></li>
-                <li><a href="#"><i class="fas fa-users me-3"></i>Colaborators</a></li>
-            </ul>
-        </div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="p-3 bg-black/15 rounded-lg hover:font-bold"
-                href="{{ route('logout') }}">Logout</a>
-        </form>
+            <x-menu-item title="Gerenciar Vagas" icon="o-cog-6-tooth" :href="route('company.dashboard')" />
+            <x-menu-item title="Gerenciar HR" icon="o-cog-6-tooth" :href="route('company.dashboard')" />
+
+            <x-menu-separator />
+
+            <x-menu-sub title="Gerenciar Vagas" icon="o-cog-6-tooth" icon-classes="text-warning">
+                <x-menu-item title="Cadastrar" icon="o-wifi" :href="route('job.create')" />
+                <x-menu-item title="Visualizar" icon="o-archive-box" />
+            </x-menu-sub>
+
+            <x-menu-separator />
+
+            <x-menu-item title="Wifi" icon="o-wifi" />
+        </x-menu>
+
+    </div>
+    <div>
+        <x-menu class="border border-base-content/10 !w-64">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-button type="submit" icon="o-user" label="Logout" class="btn-primary btn-dash" />
+            </form>
+        </x-menu>
     </div>
 </div>

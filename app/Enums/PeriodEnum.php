@@ -29,8 +29,8 @@ enum PeriodEnum: string implements EnumInterface
             self::PART_TIME => 'Part-time',
             self::FULL_TIME => 'Full-time',
             self::TEMPORARY => 'Temporário',
-            self::CONTRACT  => 'contrato',
-            self::FREELANCE => 'freelance',
+            self::CONTRACT  => 'Contrato',
+            self::FREELANCE => 'Freelance',
         };
     }
 

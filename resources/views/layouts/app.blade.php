@@ -30,9 +30,9 @@
             </header>
         @endisset
 
-        <div class="flex relative">
+        <div class="flex relative bg-gray-200">
             @yield('sidebar')
-            <div class="container-fluid">
+            <div class="container-fluid flex-1 ml-64">
                 @yield('content')
             </div>
 
