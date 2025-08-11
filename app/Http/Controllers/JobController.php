@@ -75,14 +75,22 @@ class JobController extends Controller
                 'degree' =>       $request->degree,
                 'period' =>       $request->period,
                 'salary' =>       $request->salary,
+                'status' =>       'ativa',
                 'city_id' =>         $request->city,
             ]);
 
             return redirect()
-            ->back()
-            ->with('success', 'Vaga cadastrada com sucesso.');
+                ->back()
+                ->with('success', 'Vaga cadastrada com sucesso.');
         }
+    }
 
+    public function list(){
+        $jobs = Job::where('company_id',auth()->user()->company->id)
+                    ->where('status', 'ativo')
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(15);
 
+        return view('job.list', compact('jobs'));
     }
 }

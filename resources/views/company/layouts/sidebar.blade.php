@@ -10,14 +10,14 @@
 
             <x-menu-separator />
 
-            <x-menu-sub title="Gerenciar Vagas" icon="o-cog-6-tooth" icon-classes="text-warning">
-                <x-menu-item title="Cadastrar" icon="o-wifi" :href="route('job.create')" />
-                <x-menu-item title="Visualizar" icon="o-archive-box" />
+            <x-menu-sub title="Gerenciar Vagas" icon="o-briefcase">
+                <x-menu-item title="Cadastrar" icon="o-document-plus" :href="route('job.create')" />
+                <x-menu-item title="Visualizar" icon="o-archive-box" :href="route('job.list')" />
             </x-menu-sub>
 
             <x-menu-separator />
 
-            <x-menu-item title="Wifi" icon="o-wifi" />
+            <x-menu-item title="Perfil" icon="o-user" />
         </x-menu>
 
     </div>

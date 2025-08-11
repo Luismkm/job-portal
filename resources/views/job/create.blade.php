@@ -1,7 +1,7 @@
 @php
     $breadcrumbs = [
         [
-            'link' => '#default',
+            'link' => route('company.dashboard'),
             'icon' => 's-home',
         ],
         [
