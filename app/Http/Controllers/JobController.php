@@ -7,6 +7,7 @@ use App\Enums\DegreeEnum;
 use App\Enums\ExperienceEnum;
 use App\Enums\PeriodEnum;
 use App\Enums\SalaryEnum;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\State;
@@ -92,5 +93,17 @@ class JobController extends Controller
                     ->paginate(15);
 
         return view('job.list', compact('jobs'));
+    }
+
+    public function edit($id)
+    {
+        $job = Job::where('id', $id)->with('cities')->first();
+        $stateJob = State::where('id', $job->city_id)->first();
+        $allStates = State::all();
+        // dd($allStates[1]->id == $stateJob->id);
+        $allCitiesByJobState = City::where('state_id', $job->cities->state_id)->get();
+        if($job){
+            return view('job.edit', compact('job', 'allStates', 'stateJob', 'allCitiesByJobState'));
+        }
     }
 }

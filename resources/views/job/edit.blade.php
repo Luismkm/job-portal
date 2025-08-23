@@ -8,7 +8,7 @@
             'label' => 'Vagas',
         ],
         [
-            'label' => 'Criar',
+            'label' => 'Editar',
         ],
     ];
     $users = [
@@ -29,18 +29,15 @@
         <x-breadcrumbs :items="$breadcrumbs" separator="o-slash" />
         <hr class="mt-3">
         <div>
-            @if (session('success'))
-                <p class="bg-green-300">Mensagem: {{ session('success') }}</p>
-            @endif
-            <p class="text-2xl mt-5">Criar uma vaga</p>
-            <form action="{{ route('job.store') }}" method="POST">
+            <p class="text-2xl mt-5">Editar uma vaga</p>
+            <form action="#" method="POST">
                 @csrf
                 <input type="hidden" name="company_id" value="{{ auth()->user()->company->id }}">
 
                 <label class="text-xs font-semibold" for="title">Título da vaga</label>
                 <input
                     class="block my-2 w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none rounded-lg"
-                    name="title" placeholder="Título da vaga" />
+                    name="title" placeholder="Título da vaga" value="{{ $job->title }}" />
                 @error('title')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -48,7 +45,7 @@
                 <label class="text-xs font-semibold" for="description">Descrição</label>
                 <textarea
                     class="block my-2 w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none rounded-lg"
-                    name="description" value="" placeholder="Descreva sobre a vaga" rows="5"></textarea>
+                    name="description" value="" placeholder="Descreva sobre a vaga" rows="5">{{ $job->description }}</textarea>
                 @error('description')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -121,9 +118,10 @@
                     <div>
                         <label class="text-xs font-semibold" for="category">Categoria</label>
                         <select class="w-[200px] block my-2 rounded-lg" name="category" id="category">
-                            <option selected value="Selecionar">Selecionar</option>
                             @foreach (\App\Enums\CategoryEnum::cases() as $category)
-                                <option value="{{ $category->value }}">{{ $category->description() }}</option>
+                                <option value="{{ $category->value }}"
+                                    {{ $job->category == $category->value ? 'selected' : '' }}>
+                                    {{ $category->description() }}</option>
                             @endforeach
                         </select>
                         @error('category')
@@ -134,9 +132,10 @@
                     <div>
                         <label class="text-xs font-semibold" for="experience">Experiência</label>
                         <select class="w-[200px] block my-2 rounded-lg" name="experience" id="experience">
-                            <option selected value="Selecionar">Selecionar</option>
                             @foreach (\App\Enums\ExperienceEnum::cases() as $experience)
-                                <option value="{{ $experience->value }}">{{ $experience->description() }}</option>
+                                <option value="{{ $experience->value }}"
+                                    {{ $job->experience == $experience->value ? 'selected' : '' }}>
+                                    {{ $experience->description() }}</option>
                             @endforeach
                         </select>
                         @error('experience')
@@ -147,9 +146,10 @@
                     <div>
                         <label class="text-xs font-semibold" for="degree">Formação</label>
                         <select class="w-[200px] block my-2 rounded-lg" name="degree" id="degree">
-                            <option selected value="Selecionar">Selecionar</option>
                             @foreach (\App\Enums\DegreeEnum::cases() as $degree)
-                                <option value="{{ $degree->value }}">{{ $degree->description() }}</option>
+                                <option value="{{ $degree->value }}"
+                                    {{ $job->degree == $degree->value ? 'selected' : '' }}>{{ $degree->description() }}
+                                </option>
                             @endforeach
                         </select>
                         @error('degree')
@@ -160,9 +160,10 @@
                     <div>
                         <label class="text-xs font-semibold" for="period">Período</label>
                         <select class="w-[200px] block my-2 rounded-lg" name="period" id="period">
-                            <option selected value="Selecionar">Selecionar</option>
                             @foreach (\App\Enums\PeriodEnum::cases() as $period)
-                                <option value="{{ $period->value }}">{{ $period->description() }}</option>
+                                <option value="{{ $period->value }}"
+                                    {{ $period->value == $job->period ? 'selected' : '' }}>{{ $period->description() }}
+                                </option>
                             @endforeach
                         </select>
                         @error('period')
@@ -173,9 +174,10 @@
                     <div>
                         <label class="text-xs font-semibold" for="salary">Salário</label>
                         <select class="w-[200px] block my-2 rounded-lg" name="salary" id="salary">
-                            <option selected value="Selecionar">Selecionar</option>
                             @foreach (\App\Enums\SalaryEnum::cases() as $salary)
-                                <option value="{{ $salary->value }}">{{ $salary->description() }}</option>
+                                <option value="{{ $salary->value }}"
+                                    {{ $job->salary == $salary->value ? 'selected' : '' }}>{{ $salary->description() }}
+                                </option>
                             @endforeach
                         </select>
                         @error('salary')
@@ -184,14 +186,14 @@
                     </div>
                 </div>
 
-                <div class="flex gap-[30px]" x-data="stateCitySelector()">
+                <div class="flex gap-[30px]" x-data="stateCitySelector({{ $stateJob->id ?? 'null' }})">
                     <div>
                         <!-- Select de Estado -->
                         <label class="text-xs font-semibold">Estado</label>
                         <select class="w-[200px] block my-2 rounded-lg" x-model="selectedState" @change="fetchCities">
-                            <option value="">Selecionar</option>
                             @foreach ($allStates as $state)
-                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                <option value="{{ $state->id }}" {{ $state->id == $stateJob->id ? 'selected' : '' }}>
+                                    {{ $state->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -200,15 +202,20 @@
                         <!-- Select de Cidade -->
                         <label class="text-xs font-semibold">Cidade</label>
                         <div class="relative">
-                            <select class="block my-2 rounded-lg w-full" id='city' name="city"
+                            <select class="block my-2 rounded-lg w-full" id="city" name="city"
                                 x-model="selectedCity">
-                                <option value="">Selecionar</option>
+
+                                @foreach ($allCitiesByJobState as $city)
+                                    <option value="{{ $city->id }}"
+                                        {{ $job->city_id == $city->id ? 'selected' : '' }} x-show="cities.length === 0">
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+
                                 <template x-for="city in cities" :key="city.id">
                                     <option :value="city.id" x-text="city.name"></option>
                                 </template>
                             </select>
-
-                            <!-- Spinner no canto direito -->
                             <div x-show="loading" class="absolute inset-y-0 right-7 flex items-center">
                                 <svg class="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24">
@@ -252,24 +259,30 @@
 </script>
 
 <script>
-    function stateCitySelector() {
+    function stateCitySelector(initialStateId) {
         return {
-            selectedState: '',
+            selectedState: initialStateId || '',
             selectedCity: '',
             cities: [],
             loading: false,
 
             fetchCities() {
+                // limpa as cidades iniciais assim que troca o estado
+                this.cities = [];
+                this.selectedCity = '';
+
                 if (!this.selectedState) {
-                    this.cities = [];
                     return;
                 }
+
                 this.loading = true;
                 fetch(`/cities/${this.selectedState}`)
                     .then(res => res.json())
                     .then(data => {
                         this.cities = data;
-                        this.selectedCity = '';
+                        if (this.cities.length > 0) {
+                            this.selectedCity = this.cities[0].id;
+                        }
                     })
                     .finally(() => {
                         this.loading = false;
