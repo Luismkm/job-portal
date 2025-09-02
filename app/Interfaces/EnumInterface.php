@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Interfaces;
-use BackedEnum;
 
-interface EnumInterface extends BackedEnum
+interface EnumInterface
 {
     public static function toArray(): array;
     public function description(): string;

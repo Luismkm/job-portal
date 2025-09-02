@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between fixed items-center h-screen shadow-md shadow-black bg-gray-300">
+<div class="flex flex-col justify-between fixed items-center h-screen shadow-md shadow-black bg-gray-300 text-black">
     <div>
         <x-menu class="border border-base-content/10  !w-64">
             <div class="flex gap-2 p-3 mb-4">

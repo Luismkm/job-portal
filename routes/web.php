@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/company/job/store', [JobController::class, 'store'])->name('job.store');
     Route::get('/company/job/list', [JobController::class, 'list'])->name('job.list');
     Route::get('/company/job/{id}/edit', [JobController::class, 'edit'])->name('job.edit');
+    Route::post('/company/job/update', [JobController::class, 'update'])->name('job.update');
 
 
     Route::get('/cities/{state_id}', function ($state_id) {

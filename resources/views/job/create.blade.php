@@ -25,7 +25,7 @@
 @endsection
 
 @section('content')
-    <div class="m-4 rounded-lg w-[calc(100vw-320px)] p-3 bg-gray-300">
+    <div class="m-4 rounded-lg w-[calc(100vw-320px)] p-3 bg-gray-300 text-black">
         <x-breadcrumbs :items="$breadcrumbs" separator="o-slash" />
         <hr class="mt-3">
         <div>
@@ -55,11 +55,10 @@
 
                 <div x-data="{ frases: [], novaFrase: '' }" class="space-y-4">
 
-                    <!-- Input com botão "Add" -->
+                    <label class="text-xs font-semibold mt-3 block" for="responsibility">Adicionar responsabilidade</label>
                     <x-input
-                        class="w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        label="Adicionar responsabilidade" placeholder="Digite a responsabilidade" icon="o-pencil"
-                        x-model="novaFrase">
+                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
+                        placeholder="Digite a responsabilidade" icon="o-pencil" x-model="novaFrase">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(novaFrase.trim() !== '') { frases.push(novaFrase); novaFrase = ''; }" />
@@ -81,19 +80,28 @@
                             Nenhuma responsabilidade adicionada ainda.
                         </div>
                     </div>
-                    <input type="hidden" name="key_responsibilities" :value="JSON.stringify(frases)">
+                    <template x-for="(frase, i) in frases" :key="i">
+                        <input type="hidden" name="key_responsibilities[]" :value="frase">
+                    </template>
+
                 </div>
+
+
+
                 <div x-data="{ skills: [], newSkill: '' }" class="space-y-4">
 
-                    <!-- Input com botão "Add" -->
+                    <label class="text-xs font-semibold mt-3 block" for="skills">Adicionar Skills</label>
                     <x-input
-                        class="w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        label="Adicionar Skills" placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill">
+                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
+                        placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill" >
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(newSkill.trim() !== '') { skills.push(newSkill); newSkill = ''; }" />
                         </x-slot:append>
                     </x-input>
+
+
+
 
                     <!-- Lista das skills -->
                     <div class="space-y-2">
@@ -110,7 +118,10 @@
                             Nenhuma skill adicionada ainda.
                         </div>
                     </div>
-                    <input type="hidden" name="skills" :value="JSON.stringify(skills)">
+                    <template x-for="(skill, i) in skills" :key="i">
+                        <input type="hidden" name="skills[]" :value="skill">
+                    </template>
+
                 </div>
 
 
@@ -234,7 +245,7 @@
     </div>
 @endsection
 
-<script>
+{{-- <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('userSelectData', () => ({
             selectedUsers: [],
@@ -249,7 +260,7 @@
             }
         }));
     });
-</script>
+</script> --}}
 
 <script>
     function stateCitySelector() {

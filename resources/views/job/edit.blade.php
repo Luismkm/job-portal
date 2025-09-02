@@ -25,14 +25,15 @@
 @endsection
 
 @section('content')
-    <div class="m-4 rounded-lg w-[calc(100vw-320px)] p-3 bg-gray-300">
+    <div class="m-4 rounded-lg w-[calc(100vw-320px)] p-3 bg-gray-300 text-black">
         <x-breadcrumbs :items="$breadcrumbs" separator="o-slash" />
         <hr class="mt-3">
         <div>
             <p class="text-2xl mt-5">Editar uma vaga</p>
-            <form action="#" method="POST">
+
+            <form action="{{ route('job.update') }}" method="POST">
                 @csrf
-                <input type="hidden" name="company_id" value="{{ auth()->user()->company->id }}">
+                <input type="hidden" name="job_id" value="{{ $job->id }}">
 
                 <label class="text-xs font-semibold" for="title">Título da vaga</label>
                 <input
@@ -50,18 +51,19 @@
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
 
-                <div x-data="{ frases: [], novaFrase: '' }" class="space-y-4">
-
-                    <!-- Input com botão "Add" -->
+                <div x-data='{"frases": @json($job->key_responsibilities), "novaFrase": ""}' class="space-y-4">
+                    <label class="text-xs font-semibold mt-3 block">Adicionar
+                        responsabilidade</label>
                     <x-input
-                        class="w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        label="Adicionar responsabilidade" placeholder="Digite a responsabilidade" icon="o-pencil"
+                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
+                        placeholder="Digite a responsabilidade" icon="o-pencil"
                         x-model="novaFrase">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(novaFrase.trim() !== '') { frases.push(novaFrase); novaFrase = ''; }" />
                         </x-slot:append>
                     </x-input>
+
 
                     <!-- Lista das responsabilidades -->
                     <div class="space-y-2">
@@ -78,19 +80,59 @@
                             Nenhuma responsabilidade adicionada ainda.
                         </div>
                     </div>
-                    <input type="hidden" name="key_responsibilities" :value="JSON.stringify(frases)">
+                    <template x-for="(frase, i) in frases" :key="i">
+                        <input type="hidden" name="key_responsibilities[]" :value="frase">
+                    </template>
                 </div>
-                <div x-data="{ skills: [], newSkill: '' }" class="space-y-4">
 
-                    <!-- Input com botão "Add" -->
+                <div x-data='{"skills": @json($job->professional_skills), "novoSkill": ""}' class="space-y-4">
+                    <label class="text-xs font-semibold mt-3 block">Adicionar Skills</label>
                     <x-input
-                        class="w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        label="Adicionar Skills" placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill">
+                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
+                        placeholder="Digite um skill" icon="o-pencil"
+                        x-model="novoSkill">
+                        <x-slot:append class="ml-5">
+                            <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
+                                @click="if(novoSkill.trim() !== '') { skills.push(novoSkill); novoSkill = ''; }" />
+                        </x-slot:append>
+                    </x-input>
+
+
+                    <!-- Lista das Skills -->
+                    <div class="space-y-2">
+                        <template x-for="(frase, index) in skills" :key="index">
+                            <div
+                                class="flex justify-between items-center border border-dashed border-gray-600/50 p-2 rounded-lg shadow-sm">
+                                <span class="text-sm font-medium" x-text="frase"></span>
+                                <x-button icon="o-trash" class="btn-error btn-sm" @click="skills.splice(index, 1)" />
+                            </div>
+                        </template>
+
+                        <!-- Mensagem quando a lista estiver vazia -->
+                        <div x-show="frases.length === 0" class="text-sm text-gray-500 italic">
+                            Nenhum skill adicionada aindo.
+                        </div>
+                    </div>
+                    <template x-for="(skill, i) in skills" :key="i">
+                        <input type="hidden" name="skills[]" :value="skill">
+                    </template>
+                </div>
+
+
+                {{-- <div x-data='{"skills": @json($job->professional_skills), "novaFrase": ""}' class="space-y-4">
+
+
+                    <label class="text-xs font-semibold mt-3 block" for="professional_skills">Adicionar Skills</label>
+
+                    <x-input
+                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
+                        placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(newSkill.trim() !== '') { skills.push(newSkill); newSkill = ''; }" />
                         </x-slot:append>
                     </x-input>
+
 
                     <!-- Lista das skills -->
                     <div class="space-y-2">
@@ -107,8 +149,10 @@
                             Nenhuma skill adicionada ainda.
                         </div>
                     </div>
-                    <input type="hidden" name="skills" :value="JSON.stringify(skills)">
-                </div>
+                    <template x-for="(skill, i) in skills" :key="i">
+                        <input type="hidden" name="skills[]" :value="skill">
+                    </template>
+                </div> --}}
 
 
 

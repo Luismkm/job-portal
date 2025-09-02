@@ -13,6 +13,11 @@ class Job extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $casts = [
+        'key_responsibilities' => 'array',
+        'professional_skills' => 'array',
+    ];
+
     protected $fillable = [
         'title',
         'description',

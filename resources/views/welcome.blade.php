@@ -65,7 +65,7 @@
             <img class="h-12" src="{{ asset('/img/linear.svg') }}" alt="Icon of Linear">
         </div>
         </div>
-        <main class="w-full">
+        <main class="w-full text-black">
             <div class="max-w-[1440px] mx-auto px-16 py-[72px]">
                 <p class="block font-bold text-5xl mb-10">Recent Jobs Available</p>
                 <div class="flex justify-between">
@@ -287,43 +287,43 @@
                 <div class="grid grid-cols-4 gap-6">
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/agriculture.svg') }}" alt="Icon of Agriculture">
-                        <p>Agriculture</p>
-                        <p>1254 jobs</p>
+                        <p class="font-bold text-2xl">Agriculture</p>
+                        <p class="font-inter text-primary">1254 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/metal.svg') }}" alt="Icon of Metal">
-                        <p>Metal Production</p>
-                        <p>816 jobs</p>
+                        <p class="font-bold text-2xl">Metal Production</p>
+                        <p class="font-inter text-primary">816 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/commerce.svg') }}" alt="Icon of Commerce">
-                        <p>Commerce</p>
-                        <p>2082 jobs</p>
+                        <p class="font-bold text-2xl">Commerce</p>
+                        <p class="font-inter text-primary">2082 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/construction.svg') }}" alt="Icon of Construction">
-                        <p>Construction</p>
-                        <p>1520 jobs</p>
+                        <p class="font-bold text-2xl">Construction</p>
+                        <p class="font-inter text-primary">1520 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/tourism.svg') }}" alt="Icon of Hotels & Tourism">
-                        <p>Hotels & Tourism</p>
-                        <p>1022 jobs</p>
+                        <p class="font-bold text-2xl">Hotels & Tourism</p>
+                        <p class="font-inter text-primary">1022 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/education.svg') }}" alt="Icon of Education">
-                        <p>Education</p>
-                        <p>1496 jobs</p>
+                        <p class="font-bold text-2xl">Education</p>
+                        <p class="font-inter text-primary">1496 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/financial.svg') }}" alt="Icon of Financial Services">
-                        <p>Financial Services</p>
-                        <p>1529 jobs</p>
+                        <p class="font-bold text-2xl">Financial Services</p>
+                        <p class="font-inter text-primary">1529 jobs</p>
                     </div>
                     <div class="flex flex-col justify-evenly items-center w-[306px] h-[280px] bg-white rounded-lg">
                         <img class="w-10 h-10" src="{{ asset('/img/transport.svg') }}" alt="Icon of Transport">
-                        <p>Transport</p>
-                        <p>1244 jobs</p>
+                        <p class="font-bold text-2xl">Transport</p>
+                        <p class="font-inter text-primary">1244 jobs</p>
                     </div>
                 </div>
             </div>

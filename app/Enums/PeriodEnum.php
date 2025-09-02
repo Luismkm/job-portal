@@ -6,8 +6,8 @@ use App\Interfaces\EnumInterface;
 
 enum PeriodEnum: string implements EnumInterface
 {
-    case FULL_TIME = 'full-time';
-    case PART_TIME   = 'part-time';
+    case FULL_TIME = 'full_time';
+    case PART_TIME   = 'part_time';
     case TEMPORARY   = 'temporario';
     case CONTRACT   = 'contrato';
     case FREELANCE   = 'freelance';
