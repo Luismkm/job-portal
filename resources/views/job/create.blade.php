@@ -65,7 +65,6 @@
                         </x-slot:append>
                     </x-input>
 
-                    <!-- Lista das responsabilidades -->
                     <div class="space-y-2">
                         <template x-for="(frase, index) in frases" :key="index">
                             <div
@@ -75,7 +74,6 @@
                             </div>
                         </template>
 
-                        <!-- Mensagem quando a lista estiver vazia -->
                         <div x-show="frases.length === 0" class="text-sm text-gray-500 italic">
                             Nenhuma responsabilidade adicionada ainda.
                         </div>
@@ -86,24 +84,18 @@
 
                 </div>
 
-
-
                 <div x-data="{ skills: [], newSkill: '' }" class="space-y-4">
 
                     <label class="text-xs font-semibold mt-3 block" for="skills">Adicionar Skills</label>
                     <x-input
                         class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill" >
+                        placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(newSkill.trim() !== '') { skills.push(newSkill); newSkill = ''; }" />
                         </x-slot:append>
                     </x-input>
 
-
-
-
-                    <!-- Lista das skills -->
                     <div class="space-y-2">
                         <template x-for="(frase, index) in skills" :key="index">
                             <div
@@ -113,7 +105,6 @@
                             </div>
                         </template>
 
-                        <!-- Mensagem quando a lista estiver vazia -->
                         <div x-show="skills.length === 0" class="text-sm text-gray-500 italic">
                             Nenhuma skill adicionada ainda.
                         </div>
@@ -123,9 +114,6 @@
                     </template>
 
                 </div>
-
-
-
 
                 <div class="flex justify-evenly mt-12">
 
@@ -197,7 +185,6 @@
 
                 <div class="flex gap-[30px]" x-data="stateCitySelector()">
                     <div>
-                        <!-- Select de Estado -->
                         <label class="text-xs font-semibold">Estado</label>
                         <select class="w-[200px] block my-2 rounded-lg" x-model="selectedState" @change="fetchCities">
                             <option value="">Selecionar</option>
@@ -208,7 +195,6 @@
                     </div>
 
                     <div class="w-[200px]">
-                        <!-- Select de Cidade -->
                         <label class="text-xs font-semibold">Cidade</label>
                         <div class="relative">
                             <select class="block my-2 rounded-lg w-full" id='city' name="city"
@@ -219,7 +205,6 @@
                                 </template>
                             </select>
 
-                            <!-- Spinner no canto direito -->
                             <div x-show="loading" class="absolute inset-y-0 right-7 flex items-center">
                                 <svg class="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24">
@@ -236,7 +221,6 @@
                     </div>
                 </div>
 
-
                 <button class="bg-primary w-20 h-12 p-2 rounded-lg mt-8" type="submit">Salvar</button>
             </form>
 
@@ -244,23 +228,6 @@
 
     </div>
 @endsection
-
-{{-- <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('userSelectData', () => ({
-            selectedUsers: [],
-            init() {
-                const choice = new Choices(this.$refs.userSelect, {
-                    removeItemButton: true
-                });
-                this.$refs.userSelect.addEventListener('change', e => {
-                    this.selectedUsers = Array.from(e.target.selectedOptions).map(o => o
-                        .value);
-                });
-            }
-        }));
-    });
-</script> --}}
 
 <script>
     function stateCitySelector() {

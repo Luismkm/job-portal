@@ -56,8 +56,7 @@
                         responsabilidade</label>
                     <x-input
                         class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        placeholder="Digite a responsabilidade" icon="o-pencil"
-                        x-model="novaFrase">
+                        placeholder="Digite a responsabilidade" icon="o-pencil" x-model="novaFrase">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(novaFrase.trim() !== '') { frases.push(novaFrase); novaFrase = ''; }" />
@@ -65,7 +64,6 @@
                     </x-input>
 
 
-                    <!-- Lista das responsabilidades -->
                     <div class="space-y-2">
                         <template x-for="(frase, index) in frases" :key="index">
                             <div
@@ -75,7 +73,6 @@
                             </div>
                         </template>
 
-                        <!-- Mensagem quando a lista estiver vazia -->
                         <div x-show="frases.length === 0" class="text-sm text-gray-500 italic">
                             Nenhuma responsabilidade adicionada ainda.
                         </div>
@@ -89,8 +86,7 @@
                     <label class="text-xs font-semibold mt-3 block">Adicionar Skills</label>
                     <x-input
                         class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        placeholder="Digite um skill" icon="o-pencil"
-                        x-model="novoSkill">
+                        placeholder="Digite um skill" icon="o-pencil" x-model="novoSkill">
                         <x-slot:append class="ml-5">
                             <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
                                 @click="if(novoSkill.trim() !== '') { skills.push(novoSkill); novoSkill = ''; }" />
@@ -98,7 +94,6 @@
                     </x-input>
 
 
-                    <!-- Lista das Skills -->
                     <div class="space-y-2">
                         <template x-for="(frase, index) in skills" :key="index">
                             <div
@@ -108,7 +103,6 @@
                             </div>
                         </template>
 
-                        <!-- Mensagem quando a lista estiver vazia -->
                         <div x-show="frases.length === 0" class="text-sm text-gray-500 italic">
                             Nenhum skill adicionada aindo.
                         </div>
@@ -117,45 +111,6 @@
                         <input type="hidden" name="skills[]" :value="skill">
                     </template>
                 </div>
-
-
-                {{-- <div x-data='{"skills": @json($job->professional_skills), "novaFrase": ""}' class="space-y-4">
-
-
-                    <label class="text-xs font-semibold mt-3 block" for="professional_skills">Adicionar Skills</label>
-
-                    <x-input
-                        class="w-full border bg-white border-gray-300 focus:border-primary focus:ring-0 focus:outline-none !rounded-lg"
-                        placeholder="Digite um Skill" icon="o-pencil" x-model="newSkill">
-                        <x-slot:append class="ml-5">
-                            <x-button label="Add" icon="o-plus" class="join-item btn-primary !ml-3"
-                                @click="if(newSkill.trim() !== '') { skills.push(newSkill); newSkill = ''; }" />
-                        </x-slot:append>
-                    </x-input>
-
-
-                    <!-- Lista das skills -->
-                    <div class="space-y-2">
-                        <template x-for="(frase, index) in skills" :key="index">
-                            <div
-                                class="flex justify-between items-center bg-gray-300 border border-dashed border-gray-600/50 p-2 rounded-lg shadow-sm">
-                                <span class="text-sm font-medium" x-text="frase"></span>
-                                <x-button icon="o-trash" class="btn-error btn-sm" @click="skills.splice(index, 1)" />
-                            </div>
-                        </template>
-
-                        <!-- Mensagem quando a lista estiver vazia -->
-                        <div x-show="skills.length === 0" class="text-sm text-gray-500 italic">
-                            Nenhuma skill adicionada ainda.
-                        </div>
-                    </div>
-                    <template x-for="(skill, i) in skills" :key="i">
-                        <input type="hidden" name="skills[]" :value="skill">
-                    </template>
-                </div> --}}
-
-
-
 
                 <div class="flex justify-evenly mt-12">
 
@@ -232,7 +187,6 @@
 
                 <div class="flex gap-[30px]" x-data="stateCitySelector({{ $stateJob->id ?? 'null' }})">
                     <div>
-                        <!-- Select de Estado -->
                         <label class="text-xs font-semibold">Estado</label>
                         <select class="w-[200px] block my-2 rounded-lg" x-model="selectedState" @change="fetchCities">
                             @foreach ($allStates as $state)
@@ -243,7 +197,6 @@
                     </div>
 
                     <div class="w-[200px]">
-                        <!-- Select de Cidade -->
                         <label class="text-xs font-semibold">Cidade</label>
                         <div class="relative">
                             <select class="block my-2 rounded-lg w-full" id="city" name="city"
@@ -286,23 +239,6 @@
 @endsection
 
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('userSelectData', () => ({
-            selectedUsers: [],
-            init() {
-                const choice = new Choices(this.$refs.userSelect, {
-                    removeItemButton: true
-                });
-                this.$refs.userSelect.addEventListener('change', e => {
-                    this.selectedUsers = Array.from(e.target.selectedOptions).map(o => o
-                        .value);
-                });
-            }
-        }));
-    });
-</script>
-
-<script>
     function stateCitySelector(initialStateId) {
         return {
             selectedState: initialStateId || '',
@@ -311,7 +247,6 @@
             loading: false,
 
             fetchCities() {
-                // limpa as cidades iniciais assim que troca o estado
                 this.cities = [];
                 this.selectedCity = '';
 
