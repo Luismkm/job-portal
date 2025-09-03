@@ -112,7 +112,7 @@
                     </template>
                 </div>
 
-                <div class="flex justify-evenly mt-12">
+                <div class="flex justify-between mt-12">
 
                     <div>
                         <label class="text-xs font-semibold" for="category">Categoria</label>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="flex gap-[30px]" x-data="stateCitySelector({{ $stateJob->id ?? 'null' }})">
+                <div class="flex gap-[44px]" x-data="stateCitySelector({{ $stateJob->id ?? 'null' }})">
                     <div>
                         <label class="text-xs font-semibold">Estado</label>
                         <select class="w-[200px] block my-2 rounded-lg" x-model="selectedState" @change="fetchCities">
