@@ -35,6 +35,11 @@
                 @csrf
                 <input type="hidden" name="job_id" value="{{ $job->id }}">
 
+                <label class="text-xs font-semibold" for="title">Criada por</label>
+                <input
+                    class="block my-2 w-full border text-gray-500 bg-gray-200 border-gray-300 focus:border-primary rounded-lg cursor-not-allowed"
+                    name="title" disabled placeholder="Título da vaga" value="{{ $job->user->name }}" />
+
                 <label class="text-xs font-semibold" for="title">Título da vaga</label>
                 <input
                     class="block my-2 w-full border border-gray-300 focus:border-primary focus:ring-0 focus:outline-none rounded-lg"

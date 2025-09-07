@@ -113,12 +113,13 @@ class JobController extends Controller
 
     public function edit($id)
     {
-        $job = Job::where('id', $id)->with('cities')->first();
+        $job = Job::where('id', $id)->with('cities', 'user')->first();
         $stateJob = State::where('id', $job->city_id)->first();
         $allStates = State::all();
         // dd($allStates[1]->id == $stateJob->id);
         $allCitiesByJobState = City::where('state_id', $job->cities->state_id)->get();
-        /* dd($job); */
+        /* $jobOwner = $job->user()->name; */
+        /* dd($job->users); */
         if ($job) {
             return view('job.edit', compact('job', 'allStates', 'stateJob', 'allCitiesByJobState'));
         }
