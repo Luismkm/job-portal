@@ -31,7 +31,8 @@ class Job extends Model
         'status',
         'category',
         'city_id',
-        'company_id'
+        'company_id',
+        'user_id'
     ];
 
     protected static function boot()
@@ -53,6 +54,11 @@ class Job extends Model
     public function companies()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function employees()

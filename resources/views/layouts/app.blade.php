@@ -31,11 +31,15 @@
         @endisset
 
         <div class="flex relative bg-gray-200">
-            @yield('sidebar')
+            @if (auth()->user()->role === 'human-resources')
+                @include('human-resources.layouts.sidebar')
+            @elseif(auth()->user()->role === 'company')
+                @include('company.layouts.sidebar')
+            @endif
+
             <div class="container-fluid flex-1 ml-64">
                 @yield('content')
             </div>
-
         </div>
 
     </div>

@@ -35,7 +35,8 @@
             <p class="text-2xl mt-5">Criar uma vaga</p>
             <form action="{{ route('job.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="company_id" value="{{ auth()->user()->company->id }}">
+                <input type="hidden" name="company_id"
+                    value="{{ auth()->user()->company?->id ?? auth()->user()->humanResourceUser?->companies?->id }}">
 
                 <label class="text-xs font-semibold" for="title">Título da vaga</label>
                 <input

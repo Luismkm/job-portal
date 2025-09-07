@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'avatar' => fake()->url(),
             'token' => Str::random(60),
             'email_verified_at' => fake()->date(),
-            'status' => fake()->randomElement(['ativado']),
+            'status' => fake()->randomElement(['ativo']),
             'role' => fake()->randomElement(['employee', 'company', 'human_resource']),
             'permission' => json_encode(fake()->word())
         ];

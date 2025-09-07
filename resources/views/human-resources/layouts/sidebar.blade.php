@@ -9,13 +9,6 @@
 
             <x-menu-separator />
 
-            <x-menu-sub title="Gerenciar HR" icon="o-user-group">
-                <x-menu-item title="Cadastrar" icon="o-user-plus" :href="route('human-resources.create')" />
-                <x-menu-item title="Visualizar" icon="o-archive-box" :href="route('job.list')" />
-            </x-menu-sub>
-
-            <x-menu-separator />
-
             <x-menu-sub title="Gerenciar Vagas" icon="o-briefcase">
                 <x-menu-item title="Cadastrar" icon="o-document-plus" :href="route('job.create')" />
                 <x-menu-item title="Visualizar" icon="o-archive-box" :href="route('job.list')" />

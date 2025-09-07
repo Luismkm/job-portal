@@ -11,6 +11,7 @@ use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\State;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -78,6 +79,7 @@ class JobController extends Controller
                 'salary' =>       $request->salary,
                 'status' =>       'ativo',
                 'city_id' =>         $request->city,
+                'user_id' => auth()->user()->id
             ]);
 
             return redirect()
@@ -86,11 +88,26 @@ class JobController extends Controller
         }
     }
 
-    public function list(){
-        $jobs = Job::where('company_id',auth()->user()->company->id)
-                    ->where('status', 'ativo')
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(15);
+    public function list()
+    {
+        $role = auth()->user()->role;
+
+        $jobs = null;
+
+        if ($role === 'company') {
+            $jobs = Job::where('company_id', auth()->user()->company->id)
+                ->where('status', 'ativo')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(15);
+        } elseif ($role === 'human-resources') {
+            $jobs = Job::where('company_id', auth()->user()->humanResourceUser->companies->id)
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 'ativo')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(15);
+        }
+
+
         return view('job.list', compact('jobs'));
     }
 
@@ -102,7 +119,7 @@ class JobController extends Controller
         // dd($allStates[1]->id == $stateJob->id);
         $allCitiesByJobState = City::where('state_id', $job->cities->state_id)->get();
         /* dd($job); */
-        if($job){
+        if ($job) {
             return view('job.edit', compact('job', 'allStates', 'stateJob', 'allCitiesByJobState'));
         }
     }
@@ -111,7 +128,7 @@ class JobController extends Controller
     {
         $job = Job::where('id', $request->job_id)->first();
 
-        if($job){
+        if ($job) {
             $categories = implode(',', array_column(CategoryEnum::cases(), 'value'));
             $experience = implode(',', array_column(ExperienceEnum::cases(), 'value'));
             $degree = implode(',', array_column(DegreeEnum::cases(), 'value'));
@@ -166,6 +183,5 @@ class JobController extends Controller
         ]);
 
         return redirect()->route('job.list');
-
     }
 }

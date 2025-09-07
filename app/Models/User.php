@@ -42,6 +42,11 @@ class User extends Authenticable
         return $this->hasOne(Company::class, 'user_id');
     }
 
+    public function job()
+    {
+        return $this->hasOne(Job::class, 'user_id');
+    }
+
     public function employee()
     {
         return $this->hasOne(Employee::class);
@@ -49,6 +54,6 @@ class User extends Authenticable
 
     public function humanResourceUser()
     {
-        return $this->hasOne(HumanResourcesUser::class);
+        return $this->hasOne(HumanResourcesUser::class, 'user_id');
     }
 }
