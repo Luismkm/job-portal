@@ -39,8 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/company/human-resources/create', [HumanResourcesController::class, 'create'])->name('human-resources.create');
     Route::post('/company/human-resources/store', [HumanResourcesController::class, 'store'])->name('human-resources.store');
-
-    Route::get('/human-resources/home', [HumanResourcesController::class, 'home'])->name('human-resources.dashboard');
+    Route::get('/company/human-resources/list', [HumanResourcesController::class, 'list'])->name('human-resources.list');
+    Route::get('/company/human-resources/home', [HumanResourcesController::class, 'home'])->name('human-resources.dashboard');
 
     Route::get('/cities/{state_id}', function ($state_id) {
         return \App\Models\City::where('state_id', $state_id)->get();

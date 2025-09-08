@@ -20,10 +20,6 @@
 
 @extends('layouts.app')
 
-{{-- @section('sidebar')
-    @include('company.layouts.sidebar')
-@endsection
- --}}
 @section('content')
     <div class="m-4 rounded-lg w-[calc(100vw-320px)] p-3 bg-gray-300 text-black">
         <x-breadcrumbs :items="$breadcrumbs" separator="o-slash" />

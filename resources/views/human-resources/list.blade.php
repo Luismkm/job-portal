@@ -5,10 +5,10 @@
             'icon' => 's-home',
         ],
         [
-            'label' => 'Vagas',
+            'label' => 'Recursos Humanos ',
         ],
         [
-            'label' => 'Visualizar',
+            'label' => 'Visualizar usuários de RH',
         ],
     ];
     $users = [
@@ -25,35 +25,39 @@
         <x-breadcrumbs :items="$breadcrumbs" separator="o-slash" />
         <hr class="mt-3">
         <div>
-
-            @if (!$jobs->isEmpty())
+            @if (!$rhUsers->isEmpty())
                 <p class="text-2xl mt-5 mb-6">Lista de vagas</p>
                 <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
                     <table class="w-full text-sm text-gray-700 table-auto">
                         <thead class="bg-gray-100 text-gray-800 uppercase text-xs">
                             <tr>
-                                <th class="px-4 py-3 text-left">Título</th>
-                                <th class="px-4 py-3 text-center">Salário</th>
-                                <th class="px-4 py-3 text-center">Período</th>
-                                <th class="px-4 py-3 text-center">Categoria</th>
-                                <th class="px-4 py-3 text-center">Criada em</th>
+                                <th class="px-4 py-3 text-left">Nome</th>
+                                <th class="px-4 py-3 text-center">Email</th>
+                                <th class="px-4 py-3 text-center">Verificado</th>
                                 <th class="px-4 py-3 text-center">Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                            @foreach ($jobs as $job)
+                            @foreach ($rhUsers as $rhUser)
                                 <tr class="hover:bg-gray-50 transition-colors">
-                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $job->title }}</td>
-                                    <td class="px-4 py-3 text-center">R$
-                                        {{ \App\Enums\SalaryEnum::tryFrom($job->salary)?->description() }}</td>
+                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $rhUser->user->name }}</td>
+                                    <td class="px-4 py-3 text-center">{{ $rhUser->user->email }}</td>
                                     <td class="px-4 py-3 text-center">
-                                        {{ \App\Enums\PeriodEnum::tryFrom($job->period)?->description() }}</td>
+                                        @if ($rhUser->user->email_verified_at === null)
+                                            <span
+                                                class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
+                                                Não verificado
+                                            </span>
+                                        @else
+                                            <span
+                                                class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                                Verificado
+                                            </span>
+                                        @endif
+                                    </td>
                                     <td class="px-4 py-3 text-center">
-                                        {{ \App\Enums\CategoryEnum::tryFrom($job->category)?->description() }}</td>
-                                    <td class="px-4 py-3 text-center">{{ $job->created_at->format('d/m/Y') }}</td>
-                                    <td class="px-4 py-3 text-center">
-                                        @if ($job->status === 'ativo')
+                                        @if ($rhUser->user->status === 'ativo')
                                             <span
                                                 class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
                                                 Ativo
@@ -65,14 +69,16 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td><a href="{{ route('job.edit', ['id' => $job->id]) }}">
-                                        <x-icon name="o-arrow-right-circle"  class="w-6 h-6"/>
-                                        </a></td>
-                                </tr>
+                                    <td>
+                                        <a title="Bloquear" href="{{ route('job.edit', ['id' => $rhUser->user_id]) }}">
+                                            <x-icon name="o-lock-open"
+                                                class="w-9 h-7 bg-green-100 text-green-800 p-1 rounded-full" />
+                                        </a>
+                                    </td>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="mx-2 my-7">{{ $jobs->links('pagination::tailwind') }}</p>
+                    <div class="mx-2 my-7">{{ $rhUsers->links('pagination::tailwind') }}</p>
                     </div>
 
 
@@ -96,6 +102,7 @@
                 </div>
             @endif
 
-
         </div>
-    @endsection
+
+    </div>
+@endsection
