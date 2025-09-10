@@ -68,12 +68,21 @@ class HumanResourcesController extends Controller
             ->with('success', 'Usuário cadastrado com sucesso.');
     }
 
-    public function list(){
+    public function list()
+    {
 
         $rhUsers = HumanResourcesUser::where('company_id', auth()->user()->company->id)->with('user')->paginate(15);
 
-        /* dd($rhUsers[0]->users); */
-
         return view('human-resources.list', compact('rhUsers'));
+    }
+
+    public function handleStatus($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->status = $user->status === 'ativo' ? 'inativo' : 'ativo';
+        $user->save();
+
+        return response()->json(['status' => $user->status]);
     }
 }

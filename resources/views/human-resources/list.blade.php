@@ -56,24 +56,15 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-4 py-3 text-center">
+                                    <td class="px-4 py-3 text-center" id="status-{{ $rhUser->user->id }}"
+                                        onclick="handleStatus('{{ $rhUser->user->id }}')">
                                         @if ($rhUser->user->status === 'ativo')
-                                            <span
-                                                class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
-                                                Ativo
-                                            </span>
-                                        @else
-                                            <span
-                                                class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
-                                                Inativo
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a title="Bloquear" href="{{ route('job.edit', ['id' => $rhUser->user_id]) }}">
                                             <x-icon name="o-lock-open"
-                                                class="w-9 h-7 bg-green-100 text-green-800 p-1 rounded-full" />
-                                        </a>
+                                                class="w-9 h-7 bg-green-100 text-green-800 p-1 rounded-full cursor-pointer" />
+                                        @else
+                                            <x-icon name="o-lock-closed"
+                                                class="w-9 h-7 bg-red-100 text-red-800 p-1 rounded-full cursor-pointer" />
+                                        @endif
                                     </td>
                             @endforeach
                         </tbody>
@@ -106,3 +97,31 @@
 
     </div>
 @endsection
+
+<script>
+    async function handleStatus(userId) {
+        try {
+            const response = await fetch(`/company/human-resources/${userId}/handle-status`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                }
+            });
+
+            if (!response.ok) throw new Error("Erro na requisição");
+
+            const data = await response.json();
+
+            const td = document.getElementById(`status-${userId}`);
+
+            td.innerHTML = data.status === "ativo" ?
+                `<x-icon name="o-lock-open" class="w-9 h-7 bg-green-100 text-green-800 p-1 rounded-full cursor-pointer" />` :
+                `<x-icon name="o-lock-closed" class="w-9 h-7 bg-red-100 text-red-800 p-1 rounded-full cursor-pointer" />`;
+
+        } catch (error) {
+            console.error(error);
+            alert("Não foi possível atualizar o status.");
+        }
+    }
+</script>

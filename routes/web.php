@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/company/human-resources/store', [HumanResourcesController::class, 'store'])->name('human-resources.store');
     Route::get('/company/human-resources/list', [HumanResourcesController::class, 'list'])->name('human-resources.list');
     Route::get('/company/human-resources/home', [HumanResourcesController::class, 'home'])->name('human-resources.dashboard');
+    Route::post('/company/human-resources/{id}/handle-status', [HumanResourcesController::class, 'handleStatus'])->name('human-resources.handle-status');
 
     Route::get('/cities/{state_id}', function ($state_id) {
         return \App\Models\City::where('state_id', $state_id)->get();
