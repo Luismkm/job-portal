@@ -38,6 +38,7 @@
                                 <th class="px-4 py-3 text-center">Categoria</th>
                                 <th class="px-4 py-3 text-center">Criada em</th>
                                 <th class="px-4 py-3 text-center">Status</th>
+                                <th class="px-4 py-3 text-center">Applay</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -65,8 +66,12 @@
                                             </span>
                                         @endif
                                     </td>
+                                    <td class="px-4 py-3 text-center">
+                                        <span
+                                            class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-md">{{ $job->employees_count }}</span>
+                                    </td>
                                     <td><a href="{{ route('job.edit', ['id' => $job->id]) }}">
-                                        <x-icon name="o-arrow-right-circle"  class="w-6 h-6"/>
+                                            <x-icon name="o-arrow-right-circle" class="w-6 h-6" />
                                         </a></td>
                                 </tr>
                             @endforeach
@@ -95,7 +100,5 @@
                     </a>
                 </div>
             @endif
-
-
         </div>
     @endsection

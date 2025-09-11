@@ -63,7 +63,7 @@ class Job extends Model
 
     public function employees()
     {
-        return $this->belongsToMany(Employee::class, 'employee_job', 'job_id', 'user_id')
+        return $this->belongsToMany(User::class, 'employee_job', 'job_id', 'user_id')
                 ->withPivot('status')
                 ->withTimestamps();
     }

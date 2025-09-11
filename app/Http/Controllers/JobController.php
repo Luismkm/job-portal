@@ -97,12 +97,14 @@ class JobController extends Controller
         if ($role === 'company') {
             $jobs = Job::where('company_id', auth()->user()->company->id)
                 ->where('status', 'ativo')
+                ->withCount('employees')
                 ->orderBy('created_at', 'DESC')
                 ->paginate(15);
         } elseif ($role === 'human-resources') {
             $jobs = Job::where('company_id', auth()->user()->humanResourceUser->companies->id)
                 ->where('user_id', auth()->user()->id)
                 ->where('status', 'ativo')
+                ->withCount('employees')
                 ->orderBy('created_at', 'DESC')
                 ->paginate(15);
         }
