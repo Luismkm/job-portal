@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\HumanResourcesUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class HumanResourcesController extends Controller
 {
@@ -70,6 +71,7 @@ class HumanResourcesController extends Controller
 
     public function list()
     {
+        Auth::user()->can('company') ?: abort(403, 'You are not authorized o access this page');
 
         $rhUsers = HumanResourcesUser::where('company_id', auth()->user()->company->id)->with('user')->paginate(15);
 
