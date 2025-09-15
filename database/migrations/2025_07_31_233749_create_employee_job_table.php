@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('employee_job', function (Blueprint $table) {
             $table->string('status');
+            $table->string('cv_path')->nullable();
+            $table->boolean('was_viewed')->default(false);
+            $table->boolean('was_downloaded')->default(false);;
             $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignUuid('job_id')->constrained()->onDelete('cascade');
             $table->timestamps();

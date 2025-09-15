@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('professional_skills');
             $table->string('experience');
             $table->string('degree');
-            $table->json('tag');
+            $table->json('tag')->nullable();
             $table->string('salary');
             $table->string('period');
             $table->string('status');
