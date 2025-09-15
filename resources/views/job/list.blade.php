@@ -26,6 +26,10 @@
         <hr class="mt-3">
         <div>
 
+
+
+
+
             @if (!$jobs->isEmpty())
                 <p class="text-2xl mt-5 mb-6">Lista de vagas</p>
                 <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
@@ -67,8 +71,10 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-3 text-center">
-                                        <span
-                                            class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-md">{{ $job->employees_count }}</span>
+            <x-cv-modal :job="$job" />
+
+                                        {{-- <span
+                                            class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-md">{{ $job->employees_count }}</span> --}}
                                     </td>
                                     <td><a href="{{ route('job.edit', ['id' => $job->id]) }}">
                                             <x-icon name="o-arrow-right-circle" class="w-6 h-6" />
