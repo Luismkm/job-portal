@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ConfirmAccountController;
+use App\Http\Controllers\EmployeeJob;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\HumanResourcesController;
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/company/human-resources/list', [HumanResourcesController::class, 'list'])->name('human-resources.list');
     Route::get('/company/human-resources/home', [HumanResourcesController::class, 'home'])->name('human-resources.dashboard');
     Route::post('/company/human-resources/{id}/handle-status', [HumanResourcesController::class, 'handleStatus'])->name('human-resources.handle-status');
+
+    Route::get('/jobs/{job_id}/candidates', [EmployeeJob::class, 'show'])->name('candidates.show');
+    Route::post('/jobs/{job_id}/download/cv', [EmployeeJob::class, 'download'])->name('candidates.downloadSelected');
 
     Route::get('/cities/{state_id}', function ($state_id) {
         return \App\Models\City::where('state_id', $state_id)->get();
