@@ -11,18 +11,10 @@ class EmployeeJob extends Controller
     public function show($jobId)
     {
 
-        $can = Job::where('id', $jobId)->with('employees')->first();
-
-        /* dd($can); */
-
-
-
-        /* return response()->json(
-            $can = Job::where('id', $jobId)->with('employees')->first()
-        ); */
+        $candidates = Job::where('id', $jobId)->with('employees')->first();
 
         return response()->json([
-            'employees' => $can->employees->map(function ($e) {
+            'employees' => $candidates->employees->map(function ($e) {
                 return [
                     'id' => $e->id,
                     'name' => $e->name,
@@ -33,7 +25,7 @@ class EmployeeJob extends Controller
         ]);
     }
 
-    public function download(Request $request, $jobId)
+    public function prepareDownload(Request $request, $jobId)
     {
         $job = Job::findOrFail($jobId);
         $userIds = $request->input('user_ids', []);
@@ -44,7 +36,7 @@ class EmployeeJob extends Controller
 
         $folderName = \Illuminate\Support\Str::slug($job->title, '_');
         $zipFileName = $folderName . '_' . time() . '.zip';
-        $zipPath = storage_path("app/public/zips/{$zipFileName}");
+        $zipPath = storage_path("app/tmp/{$zipFileName}");
 
         \Illuminate\Support\Facades\Storage::disk('public')->makeDirectory('zips');
 
@@ -70,8 +62,21 @@ class EmployeeJob extends Controller
             $zip->close();
         }
 
+        $token = base64_encode($zipFileName);
+        cache()->put("zip_{$token}", $zipPath, 300); // expira em 5 min
+
         return response()->json([
-            'url' => asset("storage/zips/{$zipFileName}")
+            'url' => route('download.zip', ['token' => $token])
         ]);
+    }
+
+    public function downloadZip($token)
+    {
+        $zipPath = cache()->pull("zip_{$token}");
+        if (!$zipPath || !file_exists($zipPath)) {
+            abort(404);
+        }
+
+        return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 }

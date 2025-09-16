@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/company/human-resources/{id}/handle-status', [HumanResourcesController::class, 'handleStatus'])->name('human-resources.handle-status');
 
     Route::get('/jobs/{job_id}/candidates', [EmployeeJob::class, 'show'])->name('candidates.show');
-    Route::post('/jobs/{job_id}/download/cv', [EmployeeJob::class, 'download'])->name('candidates.downloadSelected');
+    Route::post('/jobs/{job_id}/download/cv', [EmployeeJob::class, 'prepareDownload'])->name('candidates.downloadSelected');
+    Route::get('/download/zip/{token}', [EmployeeJob::class, 'downloadZip'])->name('download.zip');
 
     Route::get('/cities/{state_id}', function ($state_id) {
         return \App\Models\City::where('state_id', $state_id)->get();
