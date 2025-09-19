@@ -81,14 +81,14 @@
                     </div>
 
                     <div class="mt-4 text-center">
-                        <p class="text-gray-800 text-xl font-semibold">Nenhuma vaga cadastrada</p>
-                        <p class="text-gray-600 mt-1">Clique abaixo para abrir sua primeira vaga!</p>
+                        <p class="text-gray-800 text-xl font-semibold">Nenhum usuário de RH cadastrado</p>
+                        <p class="text-gray-600 mt-1">Clique abaixo criar</p>
                     </div>
 
                     <a class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl shadow transition cursor-pointer"
                         href="{{ route('job.create') }}">
 
-                        Abrir Vaga
+                        Criar usuário
                     </a>
                 </div>
             @endif
