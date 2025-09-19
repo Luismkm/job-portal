@@ -66,57 +66,42 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-3 text-center">
-                                        <div x-data="{
-                                            modalIsOpen: false,
-                                            employees: [], // carregado pelo fetch
-                                            selected: [], // checkboxes
-                                            async baixarSelecionados() {
-                                            console.log(this.selected);
-                                                if (this.selected.length === 0) { alert('Selecione alguém'); return; }
-                                                const res = await fetch('{{ route('candidates.downloadSelected', $job->id) }}', {
-                                                    method: 'POST',
-                                                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                                                    body: JSON.stringify({ user_ids: this.selected })
-                                                });
-                                                if (!res.ok) { alert('Erro'); return; }
-                                                const data = await res.json();
-                                                if (data.url) window.open(data.url, '_blank');
-                                            }
-                                        }">
-                                            <button
-                                                x-on:click="
-                                                fetch(`/jobs/{{ $job->id }}/candidates`)
-                                                    .then(res => res.json())
-                                                    .then(data => { employees = data.employees; modalIsOpen = true; })
-                                            "
+                                        <div x-data="jobModalHandler()">
+                                            <button x-on:click="openModalCandidates('{{ $job->id }}')"
                                                 class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-md">
                                                 {{ $job->employees_count }}
                                             </button>
 
                                             <x-cv-modal x-show="modalIsOpen" x-cloak :job="$job">
                                                 <template x-for="emp in employees" :key="emp.id">
-                                <tr class="hover:bg-gray-50 transition-colors">
-                                    <td class="px-4 py-3"><label for="checkboxSuccess"
-                                            class="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-300 has-checked:text-neutral-900 dark:has-checked:text-white has-disabled:opacity-75 has-disabled:cursor-not-allowed">
-                                            <span class="relative flex items-center">
-                                                <input :value="emp.user_id" x-model="selected" type="checkbox"
-                                                    class="child-checkbox before:content[''] peer relative size-4 appearance-none overflow-hidden rounded-sm border border-neutral-300 bg-neutral-50 before:absolute before:inset-0 checked:border-green-500 checked:before:bg-green-500 focus:outline-2 focus:outline-offset-2 focus:outline-neutral-800 checked:focus:outline-green-500 active:outline-offset-0 disabled:cursor-not-allowed dark:border-neutral-700 dark:bg-neutral-900 dark:checked:border-green-500 dark:checked:before:bg-green-500 dark:focus:outline-neutral-300 dark:checked:focus:outline-green-500"
-                                                    />
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    aria-hidden="true" stroke="currentColor" fill="none" stroke-width="4"
-                                                    class="pointer-events-none invisible absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 text-white peer-checked:visible dark:text-white">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M4.5 12.75l6 6 9-13.5" />
-                                                </svg>
-                                            </span>
-                                        </label></td>
-                                    <td class="px-4 py-3 text-left font-medium text-gray-900" x-text="emp.name"></td>
-                                    <td class="px-4 py-3  text-center">12/12/2000</td>
-                                    <td class="px-4 py-3  text-center">Arquivo</td>
-                                    <td class="px-4 py-3 text-center"><a href="#"></a><x-icon name="o-eye" /></td>
-                                    <td class="px-4 py-3  text-center"><a href="#"></a><x-icon
-                                            name="o-archive-box-arrow-down" /></td>
-                                </tr>
+                                                    <tr class="hover:bg-gray-50 transition-colors">
+                                                        <td class="px-4 py-3"><label for="checkboxSuccess"
+                                                                class="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-300 has-checked:text-neutral-900 dark:has-checked:text-white has-disabled:opacity-75 has-disabled:cursor-not-allowed">
+                                                                <span class="relative flex items-center">
+                                                                    <input :value="emp.user_id" x-model="selected" type="checkbox"
+                                                                        class="child-checkbox before:content[''] peer relative size-4 appearance-none overflow-hidden rounded-sm border border-neutral-300 bg-neutral-50 before:absolute before:inset-0 checked:border-green-500 checked:before:bg-green-500 focus:outline-2 focus:outline-offset-2 focus:outline-neutral-800 checked:focus:outline-green-500 active:outline-offset-0 disabled:cursor-not-allowed dark:border-neutral-700 dark:bg-neutral-900 dark:checked:border-green-500 dark:checked:before:bg-green-500 dark:focus:outline-neutral-300 dark:checked:focus:outline-green-500" />
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                                        aria-hidden="true" stroke="currentColor" fill="none" stroke-width="4"
+                                                                        class="pointer-events-none invisible absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 text-white peer-checked:visible dark:text-white">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            d="M4.5 12.75l6 6 9-13.5" />
+                                                                    </svg>
+                                                                </span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="px-4 py-3 text-left font-medium text-gray-900" x-text="emp.name"></td>
+                                                        <td class="px-4 py-3  text-center" x-text="emp.created_at"></td>
+                                                        <td class="px-4 py-3  text-center">
+                                                            <a :href="'{{ url("/job/{$job->id}/employee") }}/' + emp.id + '/cv/view'" target="_blank">
+                                                                <x-icon name="o-document-magnifying-glass" title="Visualizar" />
+                                                            </a>
+                                                        </td>
+                                                        <td class="px-4 py-3 text-center"><x-icon name="o-eye" title="Visualizado" x-show="emp.was_viewed" /></td>
+                                                        <td class="px-4 py-3  text-center">
+                                                            <a href="#"><x-icon name="o-archive-box-arrow-down" /></a>
+                                                            <x-icon title="Download já realizado" name="o-check" class="text-green-500" x-show="emp.was_viewed" />
+                                                        </td>
+                                                    </tr>
                                 </template>
                                 </x-modalcv>
                 </div>
@@ -154,3 +139,54 @@
         @endif
     </div>
 @endsection
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('jobModalHandler', () => ({
+            modalIsOpen: false,
+            employees: [],
+            selected: [],
+
+            async openModalCandidates(jobId) {
+                try {
+                    const res = await fetch(`/jobs/${jobId}/candidates`);
+                    if (!res.ok) throw new Error('Erro ao buscar candidatos');
+
+                    const data = await res.json();
+                    this.employees = data.employees;
+                    this.modalIsOpen = true;
+                } catch (e) {
+                    alert(e.message);
+                }
+            },
+
+            async baixarSelecionados() {
+
+                if (this.selected.length === 0) {
+                    alert('Selecione alguém');
+                    return;
+                }
+
+                const res = await fetch(
+                    "{{ route('candidates.downloadSelected', $job->id) }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            user_ids: this.selected
+                        })
+                    });
+
+                if (!res.ok) {
+                    alert('Erro');
+                    return;
+                }
+
+                const data = await res.json();
+                if (data.url) window.open(data.url, '_blank');
+            }
+        }))
+    })
+</script>

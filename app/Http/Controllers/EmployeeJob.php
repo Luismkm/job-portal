@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeJob extends Controller
 {
@@ -19,7 +21,10 @@ class EmployeeJob extends Controller
                     'id' => $e->id,
                     'name' => $e->name,
                     'status' => $e->pivot->status,
-                    'user_id' => $e->pivot->user_id, // vem da pivot
+                    'user_id' => $e->pivot->user_id,
+                    'was_viewed' => $e->pivot->was_viewed,
+                    'was_downloaded' => $e->pivot->was_downloaded,
+                    'created_at' => $e->pivot->created_at?->format('d/m/Y')
                 ];
             })
         ]);
@@ -34,11 +39,11 @@ class EmployeeJob extends Controller
             return response()->json(['error' => 'Nenhum candidato selecionado.'], 400);
         }
 
-        $folderName = \Illuminate\Support\Str::slug($job->title, '_');
+        $folderName = Str::slug($job->title, '_');
         $zipFileName = $folderName . '_' . time() . '.zip';
         $zipPath = storage_path("app/tmp/{$zipFileName}");
 
-        \Illuminate\Support\Facades\Storage::disk('public')->makeDirectory('zips');
+        Storage::disk('public')->makeDirectory('zips');
 
         $zip = new \ZipArchive;
         if ($zip->open($zipPath, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === TRUE) {
@@ -48,13 +53,9 @@ class EmployeeJob extends Controller
             foreach ($employees as $employee) {
                 if ($employee->pivot && $employee->pivot->cv_path) {
                     $filePath = storage_path("app/public/" . $employee->pivot->cv_path);
-                    logger("Checando arquivo: " . $filePath);
 
                     if (file_exists($filePath)) {
-                        logger("Adicionando ao ZIP: " . $filePath);
                         $zip->addFile($filePath, "{$folderName}/" . basename($filePath));
-                    } else {
-                        logger("Arquivo NÃO encontrado: " . $filePath);
                     }
                 }
             }
@@ -78,5 +79,24 @@ class EmployeeJob extends Controller
         }
 
         return response()->download($zipPath)->deleteFileAfterSend(true);
+    }
+
+    public function showCv($jobId, $employeeId)
+    {
+        $job = Job::findOrFail($jobId);
+        $employee = $job->employees()->findOrFail($employeeId);
+
+        if (!$employee->pivot || !$employee->pivot->cv_path) {
+            abort(404, 'CV não encontrado.');
+        }
+
+        $filePath = storage_path("app/public/{$employee->pivot->cv_path}");
+
+
+        if (!file_exists($filePath)) {
+            abort(404, 'Arquivo não existe.');
+        }
+
+        return response()->file($filePath);
     }
 }

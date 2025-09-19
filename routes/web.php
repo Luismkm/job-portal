@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/jobs/{job_id}/candidates', [EmployeeJob::class, 'show'])->name('candidates.show');
     Route::post('/jobs/{job_id}/download/cv', [EmployeeJob::class, 'prepareDownload'])->name('candidates.downloadSelected');
     Route::get('/download/zip/{token}', [EmployeeJob::class, 'downloadZip'])->name('download.zip');
+    Route::get('/job/{job_id}/employee/{employee_id}/cv/view', [EmployeeJob::class, 'showCv'])->name('employee-cv.show');
 
     Route::get('/cities/{state_id}', function ($state_id) {
         return \App\Models\City::where('state_id', $state_id)->get();
